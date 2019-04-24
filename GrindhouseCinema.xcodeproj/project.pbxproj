@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2DD5EFDE8429195AA8E377FF /* Pods_GrindhouseCinema.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4A3CD9CDE997BB6DB36FE0F /* Pods_GrindhouseCinema.framework */; };
 		3BAD2ED8226F8FB60033C0EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD2ED7226F8FB60033C0EE /* AppDelegate.swift */; };
 		3BAD2EDA226F8FB60033C0EE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD2ED9226F8FB60033C0EE /* ViewController.swift */; };
 		3BAD2EDD226F8FB60033C0EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BAD2EDB226F8FB60033C0EE /* Main.storyboard */; };
@@ -22,6 +23,10 @@
 		3BAD2F0B2270AA160033C0EE /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD2F0A2270AA160033C0EE /* SearchResultViewController.swift */; };
 		3BAD2F0D2270AA2B0033C0EE /* SearchResultViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD2F0C2270AA2B0033C0EE /* SearchResultViewCell.swift */; };
 		3BAD2F0F2270AA3A0033C0EE /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD2F0E2270AA3A0033C0EE /* SearchResultViewModel.swift */; };
+		3BAD2F1222710A790033C0EE /* SearchResultViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD2F1122710A790033C0EE /* SearchResultViewModelTests.swift */; };
+		3BAD2F14227110100033C0EE /* SearchFavoriteViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD2F13227110100033C0EE /* SearchFavoriteViewModelTests.swift */; };
+		3BAD2F16227112FE0033C0EE /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD2F15227112FE0033C0EE /* MovieDetailViewController.swift */; };
+		42182B8DE6B96CA3511A0899 /* Pods_GrindhouseCinemaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 839568F5BA0D3FF235DEF978 /* Pods_GrindhouseCinemaTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1C070E2BDD1F9FE7FA464437 /* Pods-GrindhouseCinema.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrindhouseCinema.release.xcconfig"; path = "Pods/Target Support Files/Pods-GrindhouseCinema/Pods-GrindhouseCinema.release.xcconfig"; sourceTree = "<group>"; };
+		35154DA1F0F0AF2B2C6CC135 /* Pods-GrindhouseCinemaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrindhouseCinemaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GrindhouseCinemaTests/Pods-GrindhouseCinemaTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3BAD2ED4226F8FB60033C0EE /* GrindhouseCinema.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrindhouseCinema.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BAD2ED7226F8FB60033C0EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3BAD2ED9226F8FB60033C0EE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,6 +61,13 @@
 		3BAD2F0A2270AA160033C0EE /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
 		3BAD2F0C2270AA2B0033C0EE /* SearchResultViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewCell.swift; sourceTree = "<group>"; };
 		3BAD2F0E2270AA3A0033C0EE /* SearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
+		3BAD2F1122710A790033C0EE /* SearchResultViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModelTests.swift; sourceTree = "<group>"; };
+		3BAD2F13227110100033C0EE /* SearchFavoriteViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFavoriteViewModelTests.swift; sourceTree = "<group>"; };
+		3BAD2F15227112FE0033C0EE /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
+		4E89A764E8A04DE0ADFD7705 /* Pods-GrindhouseCinema.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrindhouseCinema.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GrindhouseCinema/Pods-GrindhouseCinema.debug.xcconfig"; sourceTree = "<group>"; };
+		74CF2A92DAD09B4F23B542C0 /* Pods-GrindhouseCinemaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrindhouseCinemaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GrindhouseCinemaTests/Pods-GrindhouseCinemaTests.release.xcconfig"; sourceTree = "<group>"; };
+		839568F5BA0D3FF235DEF978 /* Pods_GrindhouseCinemaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GrindhouseCinemaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4A3CD9CDE997BB6DB36FE0F /* Pods_GrindhouseCinema.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GrindhouseCinema.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DD5EFDE8429195AA8E377FF /* Pods_GrindhouseCinema.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42182B8DE6B96CA3511A0899 /* Pods_GrindhouseCinemaTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +96,8 @@
 				3BAD2ED6226F8FB60033C0EE /* GrindhouseCinema */,
 				3BAD2EEE226F8FB80033C0EE /* GrindhouseCinemaTests */,
 				3BAD2ED5226F8FB60033C0EE /* Products */,
+				8289DB816605858B9E20CFCD /* Pods */,
+				739A98642A1988FEBDA7D331 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,9 +115,10 @@
 			children = (
 				3BAD2ED7226F8FB60033C0EE /* AppDelegate.swift */,
 				3BAD2ED9226F8FB60033C0EE /* ViewController.swift */,
-				3BAD2F102270ABAC0033C0EE /* Search Result */,
-				3BAD2F00226FA64C0033C0EE /* Search and Favorite */,
 				3BAD2EFE226FA4030033C0EE /* APIManager.swift */,
+				3BAD2F00226FA64C0033C0EE /* Search and Favorite */,
+				3BAD2F102270ABAC0033C0EE /* Search Result */,
+				3BAD2F17227113060033C0EE /* Movie Detail */,
 				3BAD2F0722709CD40033C0EE /* Model */,
 				3BAD2EDB226F8FB60033C0EE /* Main.storyboard */,
 				3BAD2EE1226F8FB80033C0EE /* Assets.xcassets */,
@@ -114,6 +133,8 @@
 			isa = PBXGroup;
 			children = (
 				3BAD2EEF226F8FB80033C0EE /* GrindhouseCinemaTests.swift */,
+				3BAD2F1122710A790033C0EE /* SearchResultViewModelTests.swift */,
+				3BAD2F13227110100033C0EE /* SearchFavoriteViewModelTests.swift */,
 				3BAD2EF1226F8FB80033C0EE /* Info.plist */,
 			);
 			path = GrindhouseCinemaTests;
@@ -147,6 +168,34 @@
 			path = "Search Result";
 			sourceTree = "<group>";
 		};
+		3BAD2F17227113060033C0EE /* Movie Detail */ = {
+			isa = PBXGroup;
+			children = (
+				3BAD2F15227112FE0033C0EE /* MovieDetailViewController.swift */,
+			);
+			path = "Movie Detail";
+			sourceTree = "<group>";
+		};
+		739A98642A1988FEBDA7D331 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C4A3CD9CDE997BB6DB36FE0F /* Pods_GrindhouseCinema.framework */,
+				839568F5BA0D3FF235DEF978 /* Pods_GrindhouseCinemaTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8289DB816605858B9E20CFCD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4E89A764E8A04DE0ADFD7705 /* Pods-GrindhouseCinema.debug.xcconfig */,
+				1C070E2BDD1F9FE7FA464437 /* Pods-GrindhouseCinema.release.xcconfig */,
+				35154DA1F0F0AF2B2C6CC135 /* Pods-GrindhouseCinemaTests.debug.xcconfig */,
+				74CF2A92DAD09B4F23B542C0 /* Pods-GrindhouseCinemaTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -154,6 +203,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3BAD2EF4226F8FB80033C0EE /* Build configuration list for PBXNativeTarget "GrindhouseCinema" */;
 			buildPhases = (
+				AA07F471EEFD9861002CB125 /* [CP] Check Pods Manifest.lock */,
 				3BAD2ED0226F8FB60033C0EE /* Sources */,
 				3BAD2ED1226F8FB60033C0EE /* Frameworks */,
 				3BAD2ED2226F8FB60033C0EE /* Resources */,
@@ -171,9 +221,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3BAD2EF7226F8FB80033C0EE /* Build configuration list for PBXNativeTarget "GrindhouseCinemaTests" */;
 			buildPhases = (
+				3BDFFC783630B348FCBC57CC /* [CP] Check Pods Manifest.lock */,
 				3BAD2EE7226F8FB80033C0EE /* Sources */,
 				3BAD2EE8226F8FB80033C0EE /* Frameworks */,
 				3BAD2EE9226F8FB80033C0EE /* Resources */,
+				D5F29134CE2380A32646DA24 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -243,6 +295,77 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3BDFFC783630B348FCBC57CC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GrindhouseCinemaTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AA07F471EEFD9861002CB125 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GrindhouseCinema-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D5F29134CE2380A32646DA24 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-GrindhouseCinemaTests/Pods-GrindhouseCinemaTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GrindhouseCinemaTests/Pods-GrindhouseCinemaTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3BAD2ED0226F8FB60033C0EE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -252,6 +375,7 @@
 				3BAD2F0F2270AA3A0033C0EE /* SearchResultViewModel.swift in Sources */,
 				3BAD2F0B2270AA160033C0EE /* SearchResultViewController.swift in Sources */,
 				3BAD2EFF226FA4030033C0EE /* APIManager.swift in Sources */,
+				3BAD2F16227112FE0033C0EE /* MovieDetailViewController.swift in Sources */,
 				3BAD2F0D2270AA2B0033C0EE /* SearchResultViewCell.swift in Sources */,
 				3BAD2F092270A4080033C0EE /* SearchFavoriteViewModel.swift in Sources */,
 				3BAD2EDA226F8FB60033C0EE /* ViewController.swift in Sources */,
@@ -266,7 +390,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BAD2F1222710A790033C0EE /* SearchResultViewModelTests.swift in Sources */,
 				3BAD2EF0226F8FB80033C0EE /* GrindhouseCinemaTests.swift in Sources */,
+				3BAD2F14227110100033C0EE /* SearchFavoriteViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,6 +544,7 @@
 		};
 		3BAD2EF5226F8FB80033C0EE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E89A764E8A04DE0ADFD7705 /* Pods-GrindhouseCinema.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -436,6 +563,7 @@
 		};
 		3BAD2EF6226F8FB80033C0EE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1C070E2BDD1F9FE7FA464437 /* Pods-GrindhouseCinema.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -454,6 +582,7 @@
 		};
 		3BAD2EF8226F8FB80033C0EE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 35154DA1F0F0AF2B2C6CC135 /* Pods-GrindhouseCinemaTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -475,6 +604,7 @@
 		};
 		3BAD2EF9226F8FB80033C0EE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 74CF2A92DAD09B4F23B542C0 /* Pods-GrindhouseCinemaTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
