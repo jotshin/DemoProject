@@ -1,0 +1,40 @@
+## Other
+*.moved-aside
+*.xcuserstate
+
+# Carthage
+#
+# Add this line if you want to avoid checking in source code from Carthage dependencies.
+Carthage/Checkouts
+Carthage/Build
+
+## Obj-C/Swift specific
+*.hmap
+*.ipa
+
+## Cocoapods
+Pods/*
+
+## generic files to ignore
+*~
+*.DS_Store
+*.swp
+*.out
+
+# fastlane
+#
+# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
+# screenshots whenever they are needed.
+# For more information about the recommended setup visit:
+# https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Gitignore.md
+
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+fastlane/xcov_report
+
+# xcov
+
+xcov_output/
+.jigit
