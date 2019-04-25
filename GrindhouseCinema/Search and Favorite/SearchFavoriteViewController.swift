@@ -76,12 +76,12 @@ extension SearchFavoriteViewController: UITableViewDataSource, UITableViewDelega
                 let movieDetail = movieDetail else {
                 return
             }
-            strongSelf.pushMovieDetailViewController(viewModel: viewModel, movieDetail: movieDetail)
+            strongSelf.pushMovieDetailViewController(movieDetail: movieDetail)
         }
     }
 }
 
-// helpers
+// MARK: - Helpers
 extension SearchFavoriteViewController {
     fileprivate func pushSearchResultViewController(viewModel: SearchFavoriteViewModel) {
         let searchResultViewModel = SearchResultViewModel(movies: viewModel.getMoviesForResult(), apiManager: viewModel.apiManager)
@@ -94,7 +94,7 @@ extension SearchFavoriteViewController {
         navigationController.pushViewController(searchResultViewController, animated: true)
     }
     
-    fileprivate func pushMovieDetailViewController(viewModel: SearchFavoriteViewModel, movieDetail: MovieDetail) {
+    fileprivate func pushMovieDetailViewController(movieDetail: MovieDetail) {
         let movieDetailViewModel = MovieDetailViewModel(movie: movieDetail)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let movieDetailViewController = storyboard.instantiateViewController(withIdentifier: "MovieDetailViewController") as? MovieDetailViewController,

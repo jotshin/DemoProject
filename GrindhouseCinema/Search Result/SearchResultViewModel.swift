@@ -33,4 +33,21 @@ struct SearchResultViewModel {
         }
         return image
     }
+    
+    func fetchMovieDetail(id: Int, _ completion: @escaping (MovieDetail?) -> Void) {
+        apiManager.fetchMovieDetail(id: id) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case let .success(movieDetail):
+                    completion(movieDetail)
+                case .failure(_):
+                    completion(nil)
+                }
+            }
+        }
+    }
+    
+    func getMovies() -> [Movie] {
+        return movies
+    }
 }

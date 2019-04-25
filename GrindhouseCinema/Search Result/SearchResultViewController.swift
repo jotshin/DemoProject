@@ -36,4 +36,31 @@ class SearchResultViewController: UICollectionViewController {
         cell.imageView.image = viewModel.posterForDisplay(indexPath: indexPath)
         return cell
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let viewModel = viewModel else {
+            return
+        }
+        viewModel.fetchMovieDetail(id: viewModel.getMovies()[indexPath.row].id) { [weak self] movieDetail in
+            guard let strongSelf = self,
+                let movieDetail = movieDetail else {
+                    return
+            }
+            strongSelf.pushMovieDetailViewController(movieDetail: movieDetail)
+        }
+    }
+}
+
+// MARK: - Helpers
+extension SearchResultViewController {
+    fileprivate func pushMovieDetailViewController(movieDetail: MovieDetail) {
+        let movieDetailViewModel = MovieDetailViewModel(movie: movieDetail)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let movieDetailViewController = storyboard.instantiateViewController(withIdentifier: "MovieDetailViewController") as? MovieDetailViewController,
+            let navigationController = navigationController else {
+                return
+        }
+        movieDetailViewController.viewModel = movieDetailViewModel
+        navigationController.pushViewController(movieDetailViewController, animated: true)
+    }
 }
