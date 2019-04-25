@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class SearchResultViewController: UICollectionViewController {
     
@@ -44,7 +45,9 @@ class SearchResultViewController: UICollectionViewController {
         guard let viewModel = viewModel else {
             return
         }
+        SVProgressHUD.show(withStatus: "Loading...")
         viewModel.fetchMovieDetail(id: viewModel.getMovies()[indexPath.row].id) { [weak self] movieDetail in
+            SVProgressHUD.dismiss()
             guard let strongSelf = self,
                 let movieDetail = movieDetail else {
                     return

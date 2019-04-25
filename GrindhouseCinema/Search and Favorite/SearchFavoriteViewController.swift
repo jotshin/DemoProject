@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class SearchFavoriteViewController: UIViewController {
     
@@ -19,7 +20,7 @@ class SearchFavoriteViewController: UIViewController {
         searchBar.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
-        searchBar.placeholder = "Search for other movies"
+        searchBar.placeholder = "Search for movies to add to favorite"
         viewModel = SearchFavoriteViewModel(apiManager: APIManager(), dataManager: DataManager(modelName: "GrindhouseCinema"))
     }
     
@@ -38,7 +39,9 @@ extension SearchFavoriteViewController: UISearchBarDelegate {
             !keyword.isEmpty else {
             return
         }
+        SVProgressHUD.show(withStatus: "Loading...")
         viewModel.fetchMovies(keyword: keyword) { error in
+            SVProgressHUD.dismiss()
             if let error = error {
                 // show error
                 print(error.localizedDescription)
@@ -71,7 +74,9 @@ extension SearchFavoriteViewController: UITableViewDataSource, UITableViewDelega
         guard let viewModel = viewModel else {
             return
         }
+        SVProgressHUD.show(withStatus: "Loading...")
         viewModel.fetchMovieDetail(id: viewModel.getFavoriteMovies()[indexPath.row].id) { [weak self] movieDetail in
+            SVProgressHUD.dismiss()
             guard let strongSelf = self,
                 let movieDetail = movieDetail else {
                 return
@@ -104,4 +109,6 @@ extension SearchFavoriteViewController {
         movieDetailViewController.viewModel = movieDetailViewModel
         navigationController.pushViewController(movieDetailViewController, animated: true)
     }
+    
+    
 }
