@@ -15,7 +15,7 @@ enum APIError: Error {
 }
 
 protocol APIManagerProtocol {
-    func fetchMovieDetail(id: String, _ completion: @escaping (Result<MovieDetail, Error>) -> Void)
+    func fetchMovieDetail(id: Int, _ completion: @escaping (Result<MovieDetail, Error>) -> Void)
     func fetchMovies(keyword: String, _ completion: @escaping (Result<[Movie], Error>) -> Void)
 }
 
@@ -24,14 +24,15 @@ struct APIManager: APIManagerProtocol {
     private let session = URLSession.shared
     private let baseURL = "https://api.themoviedb.org/3/"
     
-    func fetchMovieDetail(id: String, _ completion: @escaping (Result<MovieDetail, Error>) -> Void) {
-        request(method: "get", path: "movie/" + id + "?api_key=4cb1eeab94f45affe2536f2c684a5c9e") { result in
+    func fetchMovieDetail(id: Int, _ completion: @escaping (Result<MovieDetail, Error>) -> Void) {
+        request(method: "get", path: "movie/" + "\(id)" + "?api_key=4cb1eeab94f45affe2536f2c684a5c9e") { result in
             switch result {
             case let .success(data):
-                if let movieDetail = try? JSONDecoder().decode(MovieDetail.self, from: data) {
+                do {
+                    let movieDetail = try JSONDecoder().decode(MovieDetail.self, from: data)
                     completion(.success(movieDetail))
-                } else {
-                    completion(.failure(APIError.dataError))
+                } catch {
+                    completion(.failure(error))
                 }
             case let .failure(error):
                 completion(.failure(error))
@@ -48,13 +49,8 @@ struct APIManager: APIManagerProtocol {
                     let movieResults = try JSONDecoder().decode(MovieResults.self, from: data)
                     completion(.success(movieResults.results))
                 } catch {
-                    print(error)
+                    completion(.failure(error))
                 }
-//                if let movieResults = try? JSONDecoder().decode(MovieResults.self, from: data) {
-//                    completion(.success(movieResults.results))
-//                } else {
-//                    completion(.failure(APIError.dataError))
-//                }
             case let .failure(error):
                 completion(.failure(error))
             }

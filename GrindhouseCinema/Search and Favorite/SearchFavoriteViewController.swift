@@ -23,7 +23,7 @@ class SearchFavoriteViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        viewModel?.getFavoriteMovies {
+        viewModel?.fetchFavoriteMovies {
             self.tableView.reloadData()
         }
     }
@@ -66,6 +66,19 @@ extension SearchFavoriteViewController: UITableViewDataSource, UITableViewDelega
         cell.posterImageView.image = viewModel.posterForCell(indexPath: indexPath)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let viewModel = viewModel else {
+            return
+        }
+        viewModel.fetchMovieDetail(id: viewModel.getFavoriteMovies()[indexPath.row].id) { [weak self] movieDetail in
+            guard let strongSelf = self,
+                let movieDetail = movieDetail else {
+                return
+            }
+            strongSelf.pushMovieDetailViewController(viewModel: viewModel, movieDetail: movieDetail)
+        }
+    }
 }
 
 // helpers
@@ -79,5 +92,16 @@ extension SearchFavoriteViewController {
         }
         searchResultViewController.viewModel = searchResultViewModel
         navigationController.pushViewController(searchResultViewController, animated: true)
+    }
+    
+    fileprivate func pushMovieDetailViewController(viewModel: SearchFavoriteViewModel, movieDetail: MovieDetail) {
+        let movieDetailViewModel = MovieDetailViewModel(movie: movieDetail)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let movieDetailViewController = storyboard.instantiateViewController(withIdentifier: "MovieDetailViewController") as? MovieDetailViewController,
+            let navigationController = navigationController else {
+                return
+        }
+        movieDetailViewController.viewModel = movieDetailViewModel
+        navigationController.pushViewController(movieDetailViewController, animated: true)
     }
 }

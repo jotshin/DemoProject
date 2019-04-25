@@ -35,6 +35,26 @@ class SearchFavoriteViewModel {
         }
     }
     
+    func fetchMovieDetail(id: Int, _ completion: @escaping (MovieDetail?) -> Void) {
+        apiManager.fetchMovieDetail(id: id) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case let .success(movieDetail):
+                    completion(movieDetail)
+                case .failure(_):
+                    completion(nil)
+                }
+            }
+        }
+    }
+    
+    func fetchFavoriteMovies(_ completion: @escaping () -> Void) {
+        dataManager.fetchSavedMovies { [weak self] movies in
+            guard let strongSelf = self else { return }
+            strongSelf.favoriteMovies = movies
+        }
+    }
+    
     func getMoviesForResult() -> [Movie] {
         guard let movies = movies else {
             return []
@@ -42,11 +62,11 @@ class SearchFavoriteViewModel {
         return movies
     }
     
-    func getFavoriteMovies(_ completion: @escaping () -> Void) {
-        dataManager.fetchSavedMovies { [weak self] movies in
-            guard let strongSelf = self else { return }
-            strongSelf.favoriteMovies = movies
+    func getFavoriteMovies() -> [Movie] {
+        guard let favoriteMovies = favoriteMovies else {
+            return []
         }
+        return favoriteMovies
     }
     
     func numberOfRows() -> Int {

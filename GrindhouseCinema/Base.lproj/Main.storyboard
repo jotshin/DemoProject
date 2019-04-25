@@ -162,20 +162,65 @@
             </objects>
             <point key="canvasLocation" x="911.59420289855075" y="115.84821428571428"/>
         </scene>
-        <!--View Controller-->
+        <!--Movie Detail View Controller-->
         <scene sceneID="WOr-VQ-eTu">
             <objects>
-                <viewController id="aoD-9M-KS5" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MovieDetailViewController" id="aoD-9M-KS5" customClass="MovieDetailViewController" customModule="GrindhouseCinema" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="duP-L7-cBB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="Vgz-yd-QL0">
+                                <rect key="frame" x="50" y="54" width="314" height="788"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UqI-c5-j13">
+                                        <rect key="frame" x="0.0" y="0.0" width="314" height="418.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="UqI-c5-j13" secondAttribute="height" multiplier="3:4" id="YAC-Cb-vWM"/>
+                                        </constraints>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="aMS-nY-B4K">
+                                        <rect key="frame" x="0.0" y="468.5" width="314" height="30"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JmA-QN-Yd6">
+                                                <rect key="frame" x="0.0" y="0.0" width="42" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dhY-qp-VNe">
+                                                <rect key="frame" x="142" y="0.0" width="172" height="30"/>
+                                                <state key="normal" title="Button"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Gi-Mr-Xsd">
+                                        <rect key="frame" x="0.0" y="548.5" width="314" height="239.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="4xC-wk-SvU" firstAttribute="bottom" secondItem="Vgz-yd-QL0" secondAttribute="bottom" constant="20" id="Xyc-GF-SAR"/>
+                            <constraint firstItem="4xC-wk-SvU" firstAttribute="trailing" secondItem="Vgz-yd-QL0" secondAttribute="trailing" constant="50" id="bh0-6j-AQA"/>
+                            <constraint firstItem="Vgz-yd-QL0" firstAttribute="leading" secondItem="4xC-wk-SvU" secondAttribute="leading" constant="50" id="fJt-hn-Bzv"/>
+                            <constraint firstItem="Vgz-yd-QL0" firstAttribute="top" secondItem="4xC-wk-SvU" secondAttribute="top" constant="10" id="nP4-IT-2lG"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="4xC-wk-SvU"/>
                     </view>
+                    <connections>
+                        <outlet property="overviewLabel" destination="4Gi-Mr-Xsd" id="Z4D-pe-pca"/>
+                        <outlet property="posterImageView" destination="UqI-c5-j13" id="ap3-8z-0Bq"/>
+                        <outlet property="ratingLabel" destination="JmA-QN-Yd6" id="1g5-OL-633"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="adH-wN-jQI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1713" y="116"/>
+            <point key="canvasLocation" x="1711.5942028985507" y="115.84821428571428"/>
         </scene>
     </scenes>
 </document>
