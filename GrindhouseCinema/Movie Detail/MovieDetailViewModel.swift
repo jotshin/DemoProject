@@ -8,6 +8,8 @@
 
 import UIKit
 
+let userDefaultKeyFavorite = "favorites"
+
 enum Favorite: String {
     case fav = "❤️"
     case not = "♡"
@@ -42,11 +44,25 @@ struct MovieDetailViewModel {
     }
     
     func movieFavoriteIsTapped() {
-        UserDefaults.standard.set(!getMovieIsFavorite(), forKey: "\(movie.id)")
+        guard var dic = UserDefaults.standard.object(forKey: userDefaultKeyFavorite) as? [String: Bool],
+            let isFavorite = dic["\(movie.id)"] else {
+                
+            return
+        }
+        dic["\(movie.id)"] = !isFavorite
+        UserDefaults.standard.set(dic, forKey: userDefaultKeyFavorite)
     }
     
     func getMovieIsFavorite() -> Bool {
-        return UserDefaults.standard.bool(forKey: "\(movie.id)")
+        guard var dic = UserDefaults.standard.object(forKey: userDefaultKeyFavorite) as? [String: Bool] else {
+            return false
+        }
+        guard let isFavorite = dic["\(movie.id)"] else {
+            dic["\(movie.id)"] = false
+            UserDefaults.standard.set(dic, forKey: userDefaultKeyFavorite)
+            return false
+        }
+        return isFavorite
     }
     
     func getMovieFavoriteString() -> String {

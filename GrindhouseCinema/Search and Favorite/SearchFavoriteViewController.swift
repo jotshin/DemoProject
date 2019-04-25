@@ -28,7 +28,6 @@ class SearchFavoriteViewController: UIViewController {
             self.tableView.reloadData()
         }
     }
-    
 }
 
 extension SearchFavoriteViewController: UISearchBarDelegate {

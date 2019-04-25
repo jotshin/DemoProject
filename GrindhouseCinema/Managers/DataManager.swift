@@ -18,7 +18,12 @@ class DataManager: DataManagerProtocol {
     func fetchSavedMovies(_ completion: @escaping ([Movie]) -> Void) {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "MovieData")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
-        fetchRequest.predicate = nil
+        guard let dic = UserDefaults.standard.object(forKey: userDefaultKeyFavorite) as? [String: Bool] else {
+            completion([])
+            return
+        }
+        let favoriteIds = Array(dic.filter { $0.value }.keys)
+        fetchRequest.predicate = NSPredicate(format: "id IN %@", favoriteIds)
         var movies: [Movie] = []
         mainQueueContext.performAndWait {
             guard let movieDataArray = try? mainQueueContext.fetch(fetchRequest) as? [MovieData] else {

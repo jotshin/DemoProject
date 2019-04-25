@@ -52,6 +52,7 @@ class SearchFavoriteViewModel {
         dataManager.fetchSavedMovies { [weak self] movies in
             guard let strongSelf = self else { return }
             strongSelf.favoriteMovies = movies
+            completion()
         }
     }
     
