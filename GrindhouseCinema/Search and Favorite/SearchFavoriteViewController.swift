@@ -16,6 +16,8 @@ class SearchFavoriteViewController: UIViewController {
     
     override func viewDidLoad() {
         searchBar.delegate = self
+        tableView.delegate = self
+        tableView.dataSource = self
         searchBar.placeholder = "Search for other movies"
         viewModel = SearchFavoriteViewModel(apiManager: APIManager(), dataManager: DataManager(modelName: "GrindhouseCinema"))
     }
@@ -47,7 +49,7 @@ extension SearchFavoriteViewController: UISearchBarDelegate {
     }
 }
 
-extension SearchFavoriteViewController: UITableViewDataSource {
+extension SearchFavoriteViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let viewModel = viewModel else {
             return 0
@@ -56,10 +58,14 @@ extension SearchFavoriteViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard let viewModel = viewModel,
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SearchFavoriteViewCell", for: indexPath) as? SearchFavoriteViewCell else {
+            return UITableViewCell()
+        }
+        cell.titleLabel.text = viewModel.titleForCell(indexPath: indexPath)
+        cell.posterImageView.image = viewModel.posterForCell(indexPath: indexPath)
+        return cell
     }
-    
-    
 }
 
 // helpers

@@ -35,15 +35,26 @@ class DataManager: DataManagerProtocol {
     func saveFetchedMovies(_ movies: [Movie]) {
         privateQueueContext.performAndWait {
             for movie in movies {
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "MovieData")
+                let predicate = NSPredicate(format: "id == \(Int32(movie.id))")
+                fetchRequest.predicate = predicate
+                
+                guard let movieDataArray = try? privateQueueContext.fetch(fetchRequest) as? [MovieData] else {
+                    return
+                }
+                if movieDataArray.count > 0 {
+                    return
+                }
+                
                 guard let movieData = NSEntityDescription.insertNewObject(forEntityName: "MovieData",
                                                                                      into: privateQueueContext) as? MovieData else {
                     return
                 }
-                movieData.id = Int32(Int64(movie.id))
+                movieData.id = Int32(movie.id)
                 movieData.title = movie.title
                 movieData.posterURL = movie.posterURL ?? ""
+                try? saveChanges()
             }
-            try? saveChanges()
         }
         
     }

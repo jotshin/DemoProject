@@ -6,7 +6,7 @@
 //  Copyright © 2019 jotshin. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class SearchFavoriteViewModel {
     let apiManager: APIManagerProtocol
@@ -61,5 +61,15 @@ class SearchFavoriteViewModel {
             return ""
         }
         return favoriteMovies[indexPath.row].title
+    }
+    
+    func posterForCell(indexPath: IndexPath) -> UIImage {
+        guard let favoriteMovies = favoriteMovies,
+            let posterURL = favoriteMovies[indexPath.row].posterURL,
+            let url = URL(string: "https://image.tmdb.org/t/p/w200/" + posterURL),
+            let image = try? UIImage(data: Data(contentsOf: url)) else {
+                return UIImage()
+        }
+        return image
     }
 }
