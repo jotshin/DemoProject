@@ -10,23 +10,11 @@ import Quick
 import Nimble
 @testable import GrindhouseCinema
 
-class APIManagerMock: APIManagerProtocol {
-    var isFetchMovieDetailCalled = false
-    var isFetchMoviesCalled = false
-    
-    func fetchMovieDetail(id: String, _ completion: @escaping (Result<MovieDetail, Error>) -> Void) {
-        isFetchMovieDetailCalled = true
-    }
-    
-    func fetchMovies(keyword: String, _ completion: @escaping (Result<[Movie], Error>) -> Void) {
-        isFetchMoviesCalled = true
-    }
-}
-
 class SearchFavoriteViewModelTests: QuickSpec {
     override func spec() {
         var subject: SearchFavoriteViewModel!
         var apiManager: APIManagerMock!
+        var dataManager: DataManagerMock!
         var movies: [Movie] = []
         
         beforeEach {
@@ -35,7 +23,8 @@ class SearchFavoriteViewModelTests: QuickSpec {
             let movie3 = Movie(id: 3, title: "Captain Marvel3", posterURL: "AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg")
             movies = [movie1, movie2, movie3]
             apiManager = APIManagerMock()
-            subject = SearchFavoriteViewModel(apiManager: apiManager)
+            dataManager = DataManagerMock()
+            subject = SearchFavoriteViewModel(apiManager: apiManager, dataManager: dataManager)
             subject.movies = movies
         }
         

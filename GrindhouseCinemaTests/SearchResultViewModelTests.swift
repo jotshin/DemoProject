@@ -18,7 +18,7 @@ class SearchResultViewModelTests: QuickSpec {
             let movie1 = Movie(id: 1, title: "Captain Marvel1", posterURL: "75AsB4NRKaYanuCeKYgIh2hfsR1.jpg")
             let movie2 = Movie(id: 2, title: "Captain Marvel2", posterURL: "rXmc4jvDBU04Wp8r5JMWy3HbhB3.jpg")
             let movie3 = Movie(id: 3, title: "Captain Marvel3", posterURL: "AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg")
-            subject = SearchResultViewModel(movies: [movie1, movie2, movie3], apiManager: APIManagerMock())
+            subject = SearchResultViewModel(movies: [movie1, movie2, movie3], apiManager: APIManagerMock(), title: "Captain Marvel")
         }
         
         describe(".numberOfItemsInSection") {

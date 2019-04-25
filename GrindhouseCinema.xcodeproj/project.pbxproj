@@ -13,7 +13,6 @@
 		3BAD2EE0226F8FB60033C0EE /* GrindhouseCinema.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD2EDE226F8FB60033C0EE /* GrindhouseCinema.xcdatamodeld */; };
 		3BAD2EE2226F8FB80033C0EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BAD2EE1226F8FB80033C0EE /* Assets.xcassets */; };
 		3BAD2EE5226F8FB80033C0EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BAD2EE3226F8FB80033C0EE /* LaunchScreen.storyboard */; };
-		3BAD2EF0226F8FB80033C0EE /* GrindhouseCinemaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD2EEF226F8FB80033C0EE /* GrindhouseCinemaTests.swift */; };
 		3BAD2EFB226FA3580033C0EE /* SearchFavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD2EFA226FA3580033C0EE /* SearchFavoriteViewController.swift */; };
 		3BAD2EFF226FA4030033C0EE /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD2EFE226FA4030033C0EE /* APIManager.swift */; };
 		3BAD2F04227098EC0033C0EE /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD2F03227098EC0033C0EE /* MovieModel.swift */; };
@@ -28,6 +27,8 @@
 		3BAD2F192271B6990033C0EE /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD2F182271B6990033C0EE /* DataManager.swift */; };
 		3BAD2F1B2271CE9D0033C0EE /* SearchFavoriteViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD2F1A2271CE9D0033C0EE /* SearchFavoriteViewCell.swift */; };
 		3BAD2F1D2271D5230033C0EE /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD2F1C2271D5230033C0EE /* MovieDetailViewModel.swift */; };
+		3BAD2F20227204F00033C0EE /* MovieDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD2F1F227204F00033C0EE /* MovieDetailViewModelTests.swift */; };
+		3BAD2F222272051A0033C0EE /* ManagerMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD2F212272051A0033C0EE /* ManagerMocks.swift */; };
 		42182B8DE6B96CA3511A0899 /* Pods_GrindhouseCinemaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 839568F5BA0D3FF235DEF978 /* Pods_GrindhouseCinemaTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,7 +53,6 @@
 		3BAD2EE4226F8FB80033C0EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3BAD2EE6226F8FB80033C0EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3BAD2EEB226F8FB80033C0EE /* GrindhouseCinemaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GrindhouseCinemaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3BAD2EEF226F8FB80033C0EE /* GrindhouseCinemaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrindhouseCinemaTests.swift; sourceTree = "<group>"; };
 		3BAD2EF1226F8FB80033C0EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3BAD2EFA226FA3580033C0EE /* SearchFavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFavoriteViewController.swift; sourceTree = "<group>"; };
 		3BAD2EFE226FA4030033C0EE /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
@@ -68,6 +68,8 @@
 		3BAD2F182271B6990033C0EE /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		3BAD2F1A2271CE9D0033C0EE /* SearchFavoriteViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFavoriteViewCell.swift; sourceTree = "<group>"; };
 		3BAD2F1C2271D5230033C0EE /* MovieDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModel.swift; sourceTree = "<group>"; };
+		3BAD2F1F227204F00033C0EE /* MovieDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModelTests.swift; sourceTree = "<group>"; };
+		3BAD2F212272051A0033C0EE /* ManagerMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerMocks.swift; sourceTree = "<group>"; };
 		4E89A764E8A04DE0ADFD7705 /* Pods-GrindhouseCinema.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrindhouseCinema.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GrindhouseCinema/Pods-GrindhouseCinema.debug.xcconfig"; sourceTree = "<group>"; };
 		74CF2A92DAD09B4F23B542C0 /* Pods-GrindhouseCinemaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrindhouseCinemaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GrindhouseCinemaTests/Pods-GrindhouseCinemaTests.release.xcconfig"; sourceTree = "<group>"; };
 		839568F5BA0D3FF235DEF978 /* Pods_GrindhouseCinemaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GrindhouseCinemaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,9 +137,10 @@
 		3BAD2EEE226F8FB80033C0EE /* GrindhouseCinemaTests */ = {
 			isa = PBXGroup;
 			children = (
-				3BAD2EEF226F8FB80033C0EE /* GrindhouseCinemaTests.swift */,
 				3BAD2F1122710A790033C0EE /* SearchResultViewModelTests.swift */,
 				3BAD2F13227110100033C0EE /* SearchFavoriteViewModelTests.swift */,
+				3BAD2F1F227204F00033C0EE /* MovieDetailViewModelTests.swift */,
+				3BAD2F212272051A0033C0EE /* ManagerMocks.swift */,
 				3BAD2EF1226F8FB80033C0EE /* Info.plist */,
 			);
 			path = GrindhouseCinemaTests;
@@ -429,8 +432,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BAD2F20227204F00033C0EE /* MovieDetailViewModelTests.swift in Sources */,
+				3BAD2F222272051A0033C0EE /* ManagerMocks.swift in Sources */,
 				3BAD2F1222710A790033C0EE /* SearchResultViewModelTests.swift in Sources */,
-				3BAD2EF0226F8FB80033C0EE /* GrindhouseCinemaTests.swift in Sources */,
 				3BAD2F14227110100033C0EE /* SearchFavoriteViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
