@@ -1,5 +1,5 @@
 # DemoProject
-This project simply demonstrates the Swift code design with MVVM, Core Data, and Unit tests
+This project simply demonstrates the Swift code design with MVVM, Core Data, and Unit tests. Please note it's not a project to demo the UI design so please bare with me for the UI details.
 
 ## Requirements:
 1. Film search (using this API endpoint https://api.themoviedb.org/3/search/movie?api_key=4cb1eeab94f45affe2536f2c684a5c9e&query=<search_query> (GET))
