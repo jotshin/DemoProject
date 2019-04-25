@@ -15,6 +15,7 @@ class SearchFavoriteViewController: UIViewController {
     var viewModel: SearchFavoriteViewModel?
     
     override func viewDidLoad() {
+        title = "Your Favorite Movies"
         searchBar.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
@@ -44,7 +45,7 @@ extension SearchFavoriteViewController: UISearchBarDelegate {
                 print(error.localizedDescription)
                 return
             }
-            self.pushSearchResultViewController(viewModel: viewModel)
+            self.pushSearchResultViewController(viewModel: viewModel, keyword: keyword)
         }
     }
 }
@@ -83,8 +84,8 @@ extension SearchFavoriteViewController: UITableViewDataSource, UITableViewDelega
 
 // MARK: - Helpers
 extension SearchFavoriteViewController {
-    fileprivate func pushSearchResultViewController(viewModel: SearchFavoriteViewModel) {
-        let searchResultViewModel = SearchResultViewModel(movies: viewModel.getMoviesForResult(), apiManager: viewModel.apiManager)
+    fileprivate func pushSearchResultViewController(viewModel: SearchFavoriteViewModel, keyword: String) {
+        let searchResultViewModel = SearchResultViewModel(movies: viewModel.getMoviesForResult(), apiManager: viewModel.apiManager, title: keyword)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let searchResultViewController = storyboard.instantiateViewController(withIdentifier: "SearchResultViewController") as? SearchResultViewController,
             let navigationController = navigationController else {

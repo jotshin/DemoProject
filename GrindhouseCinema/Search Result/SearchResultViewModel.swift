@@ -11,10 +11,12 @@ import UIKit
 struct SearchResultViewModel {
     let movies: [Movie]
     let apiManager: APIManagerProtocol
+    let title: String
     
-    init(movies: [Movie], apiManager: APIManagerProtocol) {
+    init(movies: [Movie], apiManager: APIManagerProtocol, title: String) {
         self.movies = movies
         self.apiManager = apiManager
+        self.title = title
     }
     
     func numberOfItemsInSection() -> Int {
@@ -49,5 +51,9 @@ struct SearchResultViewModel {
     
     func getMovies() -> [Movie] {
         return movies
+    }
+    
+    func getTitle() -> String {
+        return title
     }
 }

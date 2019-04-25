@@ -117,13 +117,12 @@
 		3BAD2ED6226F8FB60033C0EE /* GrindhouseCinema */ = {
 			isa = PBXGroup;
 			children = (
-				3BAD2ED7226F8FB60033C0EE /* AppDelegate.swift */,
-				3BAD2EFE226FA4030033C0EE /* APIManager.swift */,
-				3BAD2F182271B6990033C0EE /* DataManager.swift */,
+				3BAD2F1E2271E4830033C0EE /* Managers */,
 				3BAD2F00226FA64C0033C0EE /* Search and Favorite */,
 				3BAD2F102270ABAC0033C0EE /* Search Result */,
 				3BAD2F17227113060033C0EE /* Movie Detail */,
 				3BAD2F0722709CD40033C0EE /* Model */,
+				3BAD2ED7226F8FB60033C0EE /* AppDelegate.swift */,
 				3BAD2EDB226F8FB60033C0EE /* Main.storyboard */,
 				3BAD2EE1226F8FB80033C0EE /* Assets.xcassets */,
 				3BAD2EE3226F8FB80033C0EE /* LaunchScreen.storyboard */,
@@ -180,6 +179,15 @@
 				3BAD2F1C2271D5230033C0EE /* MovieDetailViewModel.swift */,
 			);
 			path = "Movie Detail";
+			sourceTree = "<group>";
+		};
+		3BAD2F1E2271E4830033C0EE /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				3BAD2EFE226FA4030033C0EE /* APIManager.swift */,
+				3BAD2F182271B6990033C0EE /* DataManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		739A98642A1988FEBDA7D331 /* Frameworks */ = {

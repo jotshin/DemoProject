@@ -13,7 +13,10 @@ class SearchResultViewController: UICollectionViewController {
     var viewModel: SearchResultViewModel?
     
     override func viewDidLoad() {
-        
+        guard let viewModel = viewModel else {
+            return
+        }
+        title = viewModel.getTitle()
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
