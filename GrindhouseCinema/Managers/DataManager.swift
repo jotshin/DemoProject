@@ -22,6 +22,7 @@ class DataManager: DataManagerProtocol {
             completion([])
             return
         }
+        // We only need those movies favored and stored in UserDefault dictionary
         let favoriteIds = Array(dic.filter { $0.value }.keys)
         fetchRequest.predicate = NSPredicate(format: "id IN %@", favoriteIds)
         var movies: [Movie] = []

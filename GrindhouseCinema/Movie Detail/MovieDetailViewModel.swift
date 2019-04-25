@@ -46,6 +46,7 @@ struct MovieDetailViewModel {
     }
     
     func movieFavoriteIsTapped() {
+        // We use UserDefault dictionary to store the ids of movies that are favored
         guard var dic = userDefaults.object(forKey: userDefaultKeyFavorite) as? [String: Bool],
             let isFavorite = dic["\(movie.id)"] else {
             return
@@ -55,6 +56,7 @@ struct MovieDetailViewModel {
     }
     
     func getMovieIsFavorite() -> Bool {
+        // We use UserDefault dictionary to store the ids of movies that are favored
         guard var dic = userDefaults.object(forKey: userDefaultKeyFavorite) as? [String: Bool] else {
             userDefaults.set(["\(movie.id)": false], forKey: userDefaultKeyFavorite)
             return false
