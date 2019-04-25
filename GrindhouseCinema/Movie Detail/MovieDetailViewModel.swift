@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum Favorite: String {
+    case fav = "❤️"
+    case not = "♡"
+}
+
 struct MovieDetailViewModel {
     var movie: MovieDetail
     
@@ -34,5 +39,17 @@ struct MovieDetailViewModel {
                 return UIImage()
         }
         return image
+    }
+    
+    func movieFavoriteIsTapped() {
+        UserDefaults.standard.set(!getMovieIsFavorite(), forKey: "\(movie.id)")
+    }
+    
+    func getMovieIsFavorite() -> Bool {
+        return UserDefaults.standard.bool(forKey: "\(movie.id)")
+    }
+    
+    func getMovieFavoriteString() -> String {
+        return getMovieIsFavorite() ? Favorite.fav.rawValue : Favorite.not.rawValue
     }
 }

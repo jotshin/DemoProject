@@ -12,6 +12,7 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
+    @IBOutlet weak var favoriteLabel: UILabel!
     var viewModel: MovieDetailViewModel?
     
     override func viewDidLoad() {
@@ -22,6 +23,18 @@ class MovieDetailViewController: UIViewController {
         posterImageView.image = viewModel.posterForMovie()
         ratingLabel.text = viewModel.ratingForMovie()
         overviewLabel.text = viewModel.overviewForMovie()
+        favoriteLabel.text = viewModel.getMovieFavoriteString()
+        favoriteLabel.isUserInteractionEnabled = true
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(tapFavoriteAction(sender:)))
+        favoriteLabel.addGestureRecognizer(gesture)
+    }
+    
+    @objc func tapFavoriteAction(sender:UITapGestureRecognizer) {
+        guard let viewModel = viewModel else {
+            return
+        }
+        viewModel.movieFavoriteIsTapped()
+        favoriteLabel.text = viewModel.getMovieFavoriteString()
     }
 }
 
