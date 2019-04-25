@@ -13,12 +13,16 @@ import Nimble
 class SearchResultViewModelTests: QuickSpec {
     override func spec() {
         var subject: SearchResultViewModel!
+        var apiManager: APIManagerMock!
+        var movies: [Movie] = []
         
         beforeEach {
             let movie1 = Movie(id: 1, title: "Captain Marvel1", posterURL: "75AsB4NRKaYanuCeKYgIh2hfsR1.jpg")
             let movie2 = Movie(id: 2, title: "Captain Marvel2", posterURL: "rXmc4jvDBU04Wp8r5JMWy3HbhB3.jpg")
             let movie3 = Movie(id: 3, title: "Captain Marvel3", posterURL: "AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg")
-            subject = SearchResultViewModel(movies: [movie1, movie2, movie3], apiManager: APIManagerMock(), title: "Captain Marvel")
+            apiManager = APIManagerMock()
+            movies = [movie1, movie2, movie3]
+            subject = SearchResultViewModel(movies: movies, apiManager: apiManager, title: "Captain Marvel")
         }
         
         describe(".numberOfItemsInSection") {
@@ -39,6 +43,25 @@ class SearchResultViewModelTests: QuickSpec {
             it("returns 3rd item's poster") {
                 let expectedImage = try? UIImage(data: Data(contentsOf: URL(string: "https://image.tmdb.org/t/p/w200/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg")!))
                 expect(subject.posterForDisplay(indexPath: IndexPath(row: 2, section: 0)).pngData()!).to(equal(expectedImage?.pngData()!))
+            }
+        }
+        
+        describe(".fetchMovieDetail") {
+            it("calls APIManager's fetchMovieDetail") {
+                subject.fetchMovieDetail(id: 123, { _ in })
+                expect(apiManager.isFetchMovieDetailCalled).to(beTrue())
+            }
+        }
+        
+        describe(".getMovies") {
+            it("returns movies") {
+                expect(subject.getMovies().count).to(equal(movies.count))
+            }
+        }
+        
+        describe(".getTitle") {
+            it("returns correct title") {
+                expect(subject.getTitle()).to(equal("Captain Marvel"))
             }
         }
     }

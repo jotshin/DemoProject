@@ -17,9 +17,11 @@ enum Favorite: String {
 
 struct MovieDetailViewModel {
     var movie: MovieDetail
+    let userDefaults: UserDefaults
     
-    init(movie: MovieDetail) {
+    init(movie: MovieDetail, userDefaults: UserDefaults) {
         self.movie = movie
+        self.userDefaults = userDefaults
     }
     
     func titleForMovie() -> String {
@@ -44,22 +46,22 @@ struct MovieDetailViewModel {
     }
     
     func movieFavoriteIsTapped() {
-        guard var dic = UserDefaults.standard.object(forKey: userDefaultKeyFavorite) as? [String: Bool],
+        guard var dic = userDefaults.object(forKey: userDefaultKeyFavorite) as? [String: Bool],
             let isFavorite = dic["\(movie.id)"] else {
             return
         }
         dic["\(movie.id)"] = !isFavorite
-        UserDefaults.standard.set(dic, forKey: userDefaultKeyFavorite)
+        userDefaults.set(dic, forKey: userDefaultKeyFavorite)
     }
     
     func getMovieIsFavorite() -> Bool {
-        guard var dic = UserDefaults.standard.object(forKey: userDefaultKeyFavorite) as? [String: Bool] else {
-            UserDefaults.standard.set(["\(movie.id)": false], forKey: userDefaultKeyFavorite)
+        guard var dic = userDefaults.object(forKey: userDefaultKeyFavorite) as? [String: Bool] else {
+            userDefaults.set(["\(movie.id)": false], forKey: userDefaultKeyFavorite)
             return false
         }
         guard let isFavorite = dic["\(movie.id)"] else {
             dic["\(movie.id)"] = false
-            UserDefaults.standard.set(dic, forKey: userDefaultKeyFavorite)
+            userDefaults.set(dic, forKey: userDefaultKeyFavorite)
             return false
         }
         return isFavorite

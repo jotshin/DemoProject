@@ -14,10 +14,11 @@ class MovieDetailViewModelTests: QuickSpec {
     override func spec() {
         var subject: MovieDetailViewModel!
         var movie: MovieDetail!
+        let userDefault: UserDefaultsMock = UserDefaultsMock()
         
         beforeEach {
             movie = MovieDetail(id: 123, title: "Captain Marvel", posterURL: "AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg", overview: "blah blah blah", rating: 7.1)
-            subject = MovieDetailViewModel(movie: movie)
+            subject = MovieDetailViewModel(movie: movie, userDefaults: userDefault)
         }
         
         describe(".titleForMovie") {
@@ -49,7 +50,7 @@ class MovieDetailViewModelTests: QuickSpec {
         describe(".getMovieIsFavorite") {
             it("get false by default") {
                 _ = subject.getMovieIsFavorite()
-                let dic = UserDefaults.standard.object(forKey: userDefaultKeyFavorite) as! [String: Bool]
+                let dic = userDefault.object(forKey: userDefaultKeyFavorite) as! [String: Bool]
                 expect(dic["123"]).to(equal(false))
             }
         }
@@ -57,7 +58,7 @@ class MovieDetailViewModelTests: QuickSpec {
         describe(".movieFavoriteIsTapped") {
             it("set UserDefault's corresponding dic's value for given key") {
                 subject.movieFavoriteIsTapped()
-                let dic = UserDefaults.standard.object(forKey: userDefaultKeyFavorite) as! [String: Bool]
+                let dic = userDefault.object(forKey: userDefaultKeyFavorite) as! [String: Bool]
                 expect(dic["123"]).to(equal(true))
             }
         }

@@ -34,3 +34,15 @@ class DataManagerMock: DataManagerProtocol {
         isFetchSavedMoviesCalled = true
     }
 }
+
+class UserDefaultsMock: UserDefaults {
+    var dic: [String: Bool] = [:]
+    
+    override func object(forKey defaultName: String) -> Any? {
+        return dic
+    }
+    
+    override func set(_ value: Any?, forKey defaultName: String) {
+        dic = value as! [String : Bool]
+    }
+}

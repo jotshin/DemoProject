@@ -100,7 +100,7 @@ extension SearchFavoriteViewController {
     }
     
     fileprivate func pushMovieDetailViewController(movieDetail: MovieDetail) {
-        let movieDetailViewModel = MovieDetailViewModel(movie: movieDetail)
+        let movieDetailViewModel = MovieDetailViewModel(movie: movieDetail, userDefaults: UserDefaults.standard)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let movieDetailViewController = storyboard.instantiateViewController(withIdentifier: "MovieDetailViewController") as? MovieDetailViewController,
             let navigationController = navigationController else {
