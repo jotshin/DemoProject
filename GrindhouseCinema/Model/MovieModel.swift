@@ -15,7 +15,7 @@ struct MovieResults: Codable {
 struct Movie: Codable {
     let id: Int
     let title: String
-    let posterURL: String
+    let posterURL: String?
     
     enum CodingKeys: String, CodingKey {
         case id

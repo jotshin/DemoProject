@@ -26,7 +26,8 @@ struct SearchResultViewModel {
     }
     
     func posterForDisplay(indexPath: IndexPath) -> UIImage {
-        guard let url = URL(string: "https://image.tmdb.org/t/p/w200/" + movies[indexPath.row].posterURL),
+        guard let posterURL = movies[indexPath.row].posterURL,
+            let url = URL(string: "https://image.tmdb.org/t/p/w200/" + posterURL),
             let image = try? UIImage(data: Data(contentsOf: url)) else {
                 return UIImage()
         }

@@ -17,7 +17,13 @@ class SearchFavoriteViewController: UIViewController {
     override func viewDidLoad() {
         searchBar.delegate = self
         searchBar.placeholder = "Search for other movies"
-        viewModel = SearchFavoriteViewModel(apiManager: APIManager())
+        viewModel = SearchFavoriteViewModel(apiManager: APIManager(), dataManager: DataManager(modelName: "GrindhouseCinema"))
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        viewModel?.getFavoriteMovies {
+            self.tableView.reloadData()
+        }
     }
     
 }
@@ -39,6 +45,21 @@ extension SearchFavoriteViewController: UISearchBarDelegate {
             self.pushSearchResultViewController(viewModel: viewModel)
         }
     }
+}
+
+extension SearchFavoriteViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let viewModel = viewModel else {
+            return 0
+        }
+        return viewModel.numberOfRows()
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
+    }
+    
+    
 }
 
 // helpers

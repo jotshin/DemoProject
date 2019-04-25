@@ -44,11 +44,17 @@ struct APIManager: APIManagerProtocol {
         request(method: "get", path: "search/movie?api_key=4cb1eeab94f45affe2536f2c684a5c9e&query=" + keyword) { result in
             switch result {
             case let .success(data):
-                if let movieResults = try? JSONDecoder().decode(MovieResults.self, from: data) {
+                do {
+                    let movieResults = try JSONDecoder().decode(MovieResults.self, from: data)
                     completion(.success(movieResults.results))
-                } else {
-                    completion(.failure(APIError.dataError))
+                } catch {
+                    print(error)
                 }
+//                if let movieResults = try? JSONDecoder().decode(MovieResults.self, from: data) {
+//                    completion(.success(movieResults.results))
+//                } else {
+//                    completion(.failure(APIError.dataError))
+//                }
             case let .failure(error):
                 completion(.failure(error))
             }
