@@ -34,6 +34,7 @@ class SearchFavoriteViewController: UIViewController {
 extension SearchFavoriteViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
         guard let viewModel = viewModel,
             let keyword = searchBar.text,
             !keyword.isEmpty else {
