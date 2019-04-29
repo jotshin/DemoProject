@@ -20,7 +20,9 @@ class MovieDetailViewController: UIViewController {
             return
         }
         title = viewModel.titleForMovie()
-        posterImageView.image = viewModel.posterForMovie()
+        viewModel.posterForMovie(completion: { image in
+            self.posterImageView.image = image
+        })
         ratingLabel.text = viewModel.ratingForMovie()
         overviewLabel.text = viewModel.overviewForMovie()
         favoriteLabel.text = viewModel.getMovieFavoriteString()

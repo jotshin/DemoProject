@@ -84,13 +84,21 @@ class SearchFavoriteViewModel {
         return favoriteMovies[indexPath.row].title
     }
     
-    func posterForCell(indexPath: IndexPath) -> UIImage {
-        guard let favoriteMovies = favoriteMovies,
-            let posterURL = favoriteMovies[indexPath.row].posterURL,
-            let url = URL(string: "https://image.tmdb.org/t/p/w200/" + posterURL),
-            let image = try? UIImage(data: Data(contentsOf: url)) else {
-                return UIImage()
+    func posterForCell(indexPath: IndexPath, completion: @escaping (UIImage) -> Void) {
+        DispatchQueue.global().async {
+            guard let favoriteMovies = self.favoriteMovies,
+                let posterURL = favoriteMovies[indexPath.row].posterURL,
+                let url = URL(string: "https://image.tmdb.org/t/p/w200/" + posterURL),
+                let image = try? UIImage(data: Data(contentsOf: url)) else {
+                    DispatchQueue.main.async {
+                        completion(UIImage())
+                    }
+                return
+            }
+            DispatchQueue.main.async {
+                completion(image)
+            }
         }
-        return image
+        
     }
 }

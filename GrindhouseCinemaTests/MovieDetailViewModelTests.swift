@@ -42,8 +42,12 @@ class MovieDetailViewModelTests: QuickSpec {
         
         describe(".posterForMovie") {
             it("returns movie poster") {
-                let expectedImage = try? UIImage(data: Data(contentsOf: URL(string: "https://image.tmdb.org/t/p/w500/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg")!))
-                expect(subject.posterForMovie().pngData()!).to(equal(expectedImage?.pngData()!))
+                var resultImage: UIImage?
+                let expectedImage = UIImage(named: "w500.jpg")!
+                subject.posterForMovie(completion: { image in
+                    resultImage = image
+                })
+                expect(resultImage?.pngData()!).toEventually(equal(expectedImage.pngData()!))
             }
         }
         
