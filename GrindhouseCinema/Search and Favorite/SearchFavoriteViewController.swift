@@ -67,7 +67,9 @@ extension SearchFavoriteViewController: UITableViewDataSource, UITableViewDelega
             return UITableViewCell()
         }
         cell.titleLabel.text = viewModel.titleForCell(indexPath: indexPath)
-        cell.posterImageView.image = viewModel.posterForCell(indexPath: indexPath)
+        viewModel.posterForCell(indexPath: indexPath, completion: { image in
+            cell.posterImageView.image = image
+        })
         return cell
     }
     

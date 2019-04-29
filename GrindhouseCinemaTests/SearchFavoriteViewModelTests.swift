@@ -79,8 +79,12 @@ class SearchFavoriteViewModelTests: QuickSpec {
         
         describe(".posterForCell") {
             it("returns given movie's poster for table view") {
-                let expectedImage = try? UIImage(data: Data(contentsOf: URL(string: "https://image.tmdb.org/t/p/w200/75AsB4NRKaYanuCeKYgIh2hfsR1.jpg")!))
-                expect(subject.posterForCell(indexPath: IndexPath(row: 0, section: 0)).pngData()!).to(equal(expectedImage?.pngData()!))
+                var resultImage: UIImage?
+                let expectedImage = UIImage(named: "w200.jpg")!
+                subject.posterForCell(indexPath: IndexPath(row: 1, section: 0), completion: { image in
+                    resultImage = image
+                })
+                expect(resultImage?.pngData()!).toEventually(equal(expectedImage.pngData()!))
             }
         }
     }

@@ -37,7 +37,9 @@ class SearchResultViewController: UICollectionViewController {
             return UICollectionViewCell()
         }
         cell.titleLabel.text = viewModel.titleForDisplay(indexPath: indexPath)
-        cell.imageView.image = viewModel.posterForDisplay(indexPath: indexPath)
+        viewModel.posterForDisplay(indexPath: indexPath) { image in
+            cell.imageView.image = image
+        }
         return cell
     }
     

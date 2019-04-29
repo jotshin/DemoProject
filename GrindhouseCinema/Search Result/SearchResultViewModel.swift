@@ -27,13 +27,20 @@ struct SearchResultViewModel {
         return movies[indexPath.row].title
     }
     
-    func posterForDisplay(indexPath: IndexPath) -> UIImage {
-        guard let posterURL = movies[indexPath.row].posterURL,
-            let url = URL(string: "https://image.tmdb.org/t/p/w200/" + posterURL),
-            let image = try? UIImage(data: Data(contentsOf: url)) else {
-                return UIImage()
+    func posterForDisplay(indexPath: IndexPath, completion: @escaping (UIImage) -> Void) {
+        DispatchQueue.global().async {
+            guard let posterURL = self.movies[indexPath.row].posterURL,
+                let url = URL(string: "https://image.tmdb.org/t/p/w200/" + posterURL),
+                let image = try? UIImage(data: Data(contentsOf: url)) else {
+                    DispatchQueue.main.async {
+                        completion(UIImage())
+                    }
+                return
+            }
+            DispatchQueue.main.async {
+                completion(image)
+            }
         }
-        return image
     }
     
     func fetchMovieDetail(id: Int, _ completion: @escaping (MovieDetail?) -> Void) {

@@ -36,13 +36,20 @@ struct MovieDetailViewModel {
         return "IMDB score: \(movie.rating ?? 0) / 10"
     }
     
-    func posterForMovie() -> UIImage {
-        guard let posterURL = movie.posterURL,
-            let url = URL(string: "https://image.tmdb.org/t/p/w500/" + posterURL),
-            let image = try? UIImage(data: Data(contentsOf: url)) else {
-                return UIImage()
+    func posterForMovie(completion: @escaping (UIImage) -> Void) {
+        DispatchQueue.global().async {
+            guard let posterURL = self.movie.posterURL,
+                let url = URL(string: "https://image.tmdb.org/t/p/w500/" + posterURL),
+                let image = try? UIImage(data: Data(contentsOf: url)) else {
+                DispatchQueue.main.async {
+                    completion(UIImage())
+                }
+                return
+            }
+            DispatchQueue.main.async {
+                completion(image)
+            }
         }
-        return image
     }
     
     func movieFavoriteIsTapped() {
