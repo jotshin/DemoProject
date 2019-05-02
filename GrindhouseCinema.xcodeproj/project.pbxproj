@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2DD5EFDE8429195AA8E377FF /* Pods_GrindhouseCinema.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4A3CD9CDE997BB6DB36FE0F /* Pods_GrindhouseCinema.framework */; };
+		3B26A4B92278CCEA00B3527A /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26A4B82278CCEA00B3527A /* Router.swift */; };
 		3BAD2ED8226F8FB60033C0EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD2ED7226F8FB60033C0EE /* AppDelegate.swift */; };
 		3BAD2EDD226F8FB60033C0EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BAD2EDB226F8FB60033C0EE /* Main.storyboard */; };
 		3BAD2EE0226F8FB60033C0EE /* GrindhouseCinema.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD2EDE226F8FB60033C0EE /* GrindhouseCinema.xcdatamodeld */; };
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		1C070E2BDD1F9FE7FA464437 /* Pods-GrindhouseCinema.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrindhouseCinema.release.xcconfig"; path = "Pods/Target Support Files/Pods-GrindhouseCinema/Pods-GrindhouseCinema.release.xcconfig"; sourceTree = "<group>"; };
 		35154DA1F0F0AF2B2C6CC135 /* Pods-GrindhouseCinemaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrindhouseCinemaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GrindhouseCinemaTests/Pods-GrindhouseCinemaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		3B26A4B82278CCEA00B3527A /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		3BAD2ED4226F8FB60033C0EE /* GrindhouseCinema.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrindhouseCinema.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BAD2ED7226F8FB60033C0EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3BAD2EDC226F8FB60033C0EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 			children = (
 				3BAD2EFE226FA4030033C0EE /* APIManager.swift */,
 				3BAD2F182271B6990033C0EE /* DataManager.swift */,
+				3B26A4B82278CCEA00B3527A /* Router.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				3BAD2F1B2271CE9D0033C0EE /* SearchFavoriteViewCell.swift in Sources */,
 				3BAD2F16227112FE0033C0EE /* MovieDetailViewController.swift in Sources */,
 				3BAD2F0D2270AA2B0033C0EE /* SearchResultViewCell.swift in Sources */,
+				3B26A4B92278CCEA00B3527A /* Router.swift in Sources */,
 				3BAD2F092270A4080033C0EE /* SearchFavoriteViewModel.swift in Sources */,
 				3BAD2EE0226F8FB60033C0EE /* GrindhouseCinema.xcdatamodeld in Sources */,
 				3BAD2EFB226FA3580033C0EE /* SearchFavoriteViewController.swift in Sources */,

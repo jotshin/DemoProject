@@ -12,6 +12,7 @@ import SVProgressHUD
 class SearchResultViewController: UICollectionViewController {
     
     var viewModel: SearchResultViewModel?
+    var didSelect: ((MovieDetail) -> ())?
     
     override func viewDidLoad() {
         guard let viewModel = viewModel else {
@@ -19,6 +20,14 @@ class SearchResultViewController: UICollectionViewController {
         }
         title = viewModel.getTitle()
     }
+    
+    func updateUI() {
+        
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+extension SearchResultViewController {
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -42,6 +51,10 @@ class SearchResultViewController: UICollectionViewController {
         }
         return cell
     }
+}
+
+// MARK: - UICollectionViewDelegate
+extension SearchResultViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let viewModel = viewModel else {
@@ -51,24 +64,11 @@ class SearchResultViewController: UICollectionViewController {
         viewModel.fetchMovieDetail(id: viewModel.getMovies()[indexPath.row].id) { [weak self] movieDetail in
             SVProgressHUD.dismiss()
             guard let strongSelf = self,
-                let movieDetail = movieDetail else {
+                let movieDetail = movieDetail,
+                let didSelect = strongSelf.didSelect else {
                     return
             }
-            strongSelf.pushMovieDetailViewController(movieDetail: movieDetail)
+            didSelect(movieDetail)
         }
-    }
-}
-
-// MARK: - Helpers
-extension SearchResultViewController {
-    fileprivate func pushMovieDetailViewController(movieDetail: MovieDetail) {
-        let movieDetailViewModel = MovieDetailViewModel(movie: movieDetail, userDefaults: UserDefaults.standard)
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let movieDetailViewController = storyboard.instantiateViewController(withIdentifier: "MovieDetailViewController") as? MovieDetailViewController,
-            let navigationController = navigationController else {
-                return
-        }
-        movieDetailViewController.viewModel = movieDetailViewModel
-        navigationController.pushViewController(movieDetailViewController, animated: true)
     }
 }

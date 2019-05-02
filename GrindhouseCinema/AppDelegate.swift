@@ -18,11 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let searchFavoriteViewController = storyboard.instantiateViewController(withIdentifier: "SearchFavoriteViewController")
-        let navigationController = UINavigationController(rootViewController: searchFavoriteViewController)
-        window?.rootViewController = navigationController
-        window?.makeKeyAndVisible()
+        Router().configure(window)
         return true
     }
 

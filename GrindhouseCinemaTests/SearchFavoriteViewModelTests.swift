@@ -27,7 +27,7 @@ class SearchFavoriteViewModelTests: QuickSpec {
             
             apiManager = APIManagerMock()
             dataManager = DataManagerMock()
-            subject = SearchFavoriteViewModel(apiManager: apiManager, dataManager: dataManager)
+            subject = SearchFavoriteViewModel(apiManager: apiManager, dataManager: dataManager) {}
             subject.movies = movies
             subject.favoriteMovies = favoriteMovies
         }

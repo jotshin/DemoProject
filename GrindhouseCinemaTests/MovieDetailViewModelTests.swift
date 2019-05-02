@@ -18,7 +18,7 @@ class MovieDetailViewModelTests: QuickSpec {
         
         beforeEach {
             movie = MovieDetail(id: 123, title: "Captain Marvel", posterURL: "AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg", overview: "blah blah blah", rating: 7.1)
-            subject = MovieDetailViewModel(movie: movie, userDefaults: userDefault)
+            subject = MovieDetailViewModel(movie: movie, userDefaults: userDefault) {}
         }
         
         describe(".titleForMovie") {
@@ -68,8 +68,8 @@ class MovieDetailViewModelTests: QuickSpec {
         }
         
         describe(".getMovieFavoriteString") {
-            it("return ❤️") {
-                expect(subject.getMovieFavoriteString()).to(equal("❤️"))
+            it("return \u{2665}") {
+                expect(subject.getMovieFavoriteString()).to(equal("\u{2665}"))
             }
         }
     }

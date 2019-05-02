@@ -11,17 +11,20 @@ import UIKit
 let userDefaultKeyFavorite = "favorites"
 
 enum Favorite: String {
-    case fav = "❤️"
-    case not = "♡"
+    case fav = "\u{2665}"
+    case not = "\u{2661}"
 }
 
 struct MovieDetailViewModel {
-    var movie: MovieDetail
-    let userDefaults: UserDefaults
+    private(set) var movie: MovieDetail
+    private let userDefaults: UserDefaults
     
-    init(movie: MovieDetail, userDefaults: UserDefaults) {
+    private let callback: () -> ()
+    
+    init(movie: MovieDetail, userDefaults: UserDefaults, callback: @escaping () -> ()) {
         self.movie = movie
         self.userDefaults = userDefaults
+        self.callback = callback
     }
     
     func titleForMovie() -> String {

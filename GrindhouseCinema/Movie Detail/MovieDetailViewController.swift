@@ -31,6 +31,10 @@ class MovieDetailViewController: UIViewController {
         favoriteLabel.addGestureRecognizer(gesture)
     }
     
+    func updateUI() {
+        
+    }
+    
     @objc func tapFavoriteAction(sender:UITapGestureRecognizer) {
         guard let viewModel = viewModel else {
             return

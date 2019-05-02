@@ -13,7 +13,11 @@ class SearchFavoriteViewController: UIViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    
     var viewModel: SearchFavoriteViewModel?
+    var didSelect: ((MovieDetail) -> ())?
+    var didFound: ((String) -> ())?
+    var presentError: ((Error) -> ())?
     
     override func viewDidLoad() {
         title = "Your Favorite Movies"
@@ -21,10 +25,13 @@ class SearchFavoriteViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.placeholder = "Search for movies to add to favorite"
-        viewModel = SearchFavoriteViewModel(apiManager: APIManager(), dataManager: DataManager(modelName: "GrindhouseCinema"))
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        updateUI()
+    }
+    
+    func updateUI() {
         viewModel?.fetchFavoriteMovies {
             self.tableView.reloadData()
         }
@@ -41,14 +48,18 @@ extension SearchFavoriteViewController: UISearchBarDelegate {
             return
         }
         SVProgressHUD.show(withStatus: "Loading...")
-        viewModel.fetchMovies(keyword: keyword) { error in
+        viewModel.fetchMovies(keyword: keyword) {[weak self] error in
             SVProgressHUD.dismiss()
             if let error = error {
                 // show error
                 print(error.localizedDescription)
                 return
             }
-            self.pushSearchResultViewController(viewModel: viewModel, keyword: keyword)
+            guard let strongSelf = self,
+                let didFound = strongSelf.didFound else {
+                return
+            }
+            didFound(keyword)
         }
     }
 }
@@ -81,37 +92,11 @@ extension SearchFavoriteViewController: UITableViewDataSource, UITableViewDelega
         viewModel.fetchMovieDetail(id: viewModel.getFavoriteMovies()[indexPath.row].id) { [weak self] movieDetail in
             SVProgressHUD.dismiss()
             guard let strongSelf = self,
-                let movieDetail = movieDetail else {
+                let movieDetail = movieDetail,
+                let didSelect = strongSelf.didSelect else {
                 return
             }
-            strongSelf.pushMovieDetailViewController(movieDetail: movieDetail)
+            didSelect(movieDetail)
         }
     }
-}
-
-// MARK: - Helpers
-extension SearchFavoriteViewController {
-    fileprivate func pushSearchResultViewController(viewModel: SearchFavoriteViewModel, keyword: String) {
-        let searchResultViewModel = SearchResultViewModel(movies: viewModel.getMoviesForResult(), apiManager: viewModel.apiManager, title: keyword)
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let searchResultViewController = storyboard.instantiateViewController(withIdentifier: "SearchResultViewController") as? SearchResultViewController,
-            let navigationController = navigationController else {
-            return
-        }
-        searchResultViewController.viewModel = searchResultViewModel
-        navigationController.pushViewController(searchResultViewController, animated: true)
-    }
-    
-    fileprivate func pushMovieDetailViewController(movieDetail: MovieDetail) {
-        let movieDetailViewModel = MovieDetailViewModel(movie: movieDetail, userDefaults: UserDefaults.standard)
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let movieDetailViewController = storyboard.instantiateViewController(withIdentifier: "MovieDetailViewController") as? MovieDetailViewController,
-            let navigationController = navigationController else {
-                return
-        }
-        movieDetailViewController.viewModel = movieDetailViewModel
-        navigationController.pushViewController(movieDetailViewController, animated: true)
-    }
-    
-    
 }
