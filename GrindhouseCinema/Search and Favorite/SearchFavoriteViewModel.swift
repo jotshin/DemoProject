@@ -9,14 +9,17 @@
 import UIKit
 
 class SearchFavoriteViewModel {
-    let apiManager: APIManagerProtocol
-    let dataManager: DataManagerProtocol
+    private let apiManager: APIManagerProtocol
+    private let dataManager: DataManagerProtocol
     var movies: [Movie]?
     var favoriteMovies: [Movie]?
     
-    init(apiManager: APIManagerProtocol, dataManager: DataManagerProtocol) {
+    private let callback: () -> ()
+    
+    init(apiManager: APIManagerProtocol, dataManager: DataManagerProtocol, callback: @escaping () -> Void) {
         self.apiManager = apiManager
         self.dataManager = dataManager
+        self.callback = callback
     }
     
     func fetchMovies(keyword: String, _ completion: @escaping (Error?) -> Void) {

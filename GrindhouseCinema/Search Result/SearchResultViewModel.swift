@@ -9,14 +9,17 @@
 import UIKit
 
 struct SearchResultViewModel {
-    let movies: [Movie]
-    let apiManager: APIManagerProtocol
-    let title: String
+    private(set) var movies: [Movie]
+    private let apiManager: APIManagerProtocol
+    private(set) var title: String
     
-    init(movies: [Movie], apiManager: APIManagerProtocol, title: String) {
+    private let callback: () -> ()
+    
+    init(movies: [Movie], apiManager: APIManagerProtocol, title: String, callback: @escaping () -> ()) {
         self.movies = movies
         self.apiManager = apiManager
         self.title = title
+        self.callback = callback
     }
     
     func numberOfItemsInSection() -> Int {
