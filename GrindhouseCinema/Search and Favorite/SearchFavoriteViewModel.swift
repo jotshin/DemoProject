@@ -11,14 +11,16 @@ import UIKit
 class SearchFavoriteViewModel {
     private let apiManager: APIManagerProtocol
     private let dataManager: DataManagerProtocol
+    private let imageProvider: ImageProvider
     var movies: [Movie]?
     var favoriteMovies: [Movie]?
     
     private let callback: () -> ()
     
-    init(apiManager: APIManagerProtocol, dataManager: DataManagerProtocol, callback: @escaping () -> Void) {
+    init(apiManager: APIManagerProtocol, dataManager: DataManagerProtocol, imageProvider: ImageProvider = ImageProvider(), callback: @escaping () -> Void) {
         self.apiManager = apiManager
         self.dataManager = dataManager
+        self.imageProvider = imageProvider
         self.callback = callback
     }
     
@@ -88,20 +90,21 @@ class SearchFavoriteViewModel {
     }
     
     func posterForCell(indexPath: IndexPath, completion: @escaping (UIImage) -> Void) {
-        DispatchQueue.global().async {
-            guard let favoriteMovies = self.favoriteMovies,
-                let posterURL = favoriteMovies[indexPath.row].posterURL,
-                let url = URL(string: "https://image.tmdb.org/t/p/w200/" + posterURL),
-                let image = try? UIImage(data: Data(contentsOf: url)) else {
-                    DispatchQueue.main.async {
-                        completion(UIImage())
-                    }
-                return
-            }
-            DispatchQueue.main.async {
+        guard let favoriteMovies = self.favoriteMovies,
+            let posterURL = favoriteMovies[indexPath.row].posterURL,
+            let url = URL(string: "https://image.tmdb.org/t/p/w200/" + posterURL) else {
+                DispatchQueue.main.async {
+                    completion(UIImage())
+                }
+            return
+        }
+        imageProvider.load(from: url, key: posterURL+"200") { (result) in
+            switch result {
+            case let .success(image):
                 completion(image)
+            case let .failure(error):
+                print(error)
             }
         }
-        
     }
 }

@@ -72,3 +72,23 @@ extension SearchResultViewController {
         }
     }
 }
+
+// MARK: - UIScrollViewDelegate
+extension SearchResultViewController {
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        guard let viewModel = viewModel else { return }
+        viewModel.suspendDownloadingImages()
+    }
+    
+    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        guard let viewModel = viewModel else { return }
+        viewModel.resumeDownloadingImages()
+        collectionView.reloadItems(at: collectionView.indexPathsForVisibleItems)
+    }
+    
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        guard let viewModel = viewModel else { return }
+        viewModel.resumeDownloadingImages()
+        collectionView.reloadItems(at: collectionView.indexPathsForVisibleItems)
+    }
+}
