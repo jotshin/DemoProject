@@ -18,13 +18,15 @@ enum Favorite: String {
 struct MovieDetailViewModel {
     private(set) var movie: MovieDetail
     private let userDefaults: UserDefaults
+    private let imageProvider: ImageProvider
     
     private let callback: () -> ()
     
-    init(movie: MovieDetail, userDefaults: UserDefaults, callback: @escaping () -> ()) {
+    init(movie: MovieDetail, imageProvider: ImageProvider = ImageProvider(), userDefaults: UserDefaults, callback: @escaping () -> ()) {
         self.movie = movie
         self.userDefaults = userDefaults
         self.callback = callback
+        self.imageProvider = imageProvider
     }
     
     func titleForMovie() -> String {
@@ -40,17 +42,19 @@ struct MovieDetailViewModel {
     }
     
     func posterForMovie(completion: @escaping (UIImage) -> Void) {
-        DispatchQueue.global().async {
-            guard let posterURL = self.movie.posterURL,
-                let url = URL(string: "https://image.tmdb.org/t/p/w500/" + posterURL),
-                let image = try? UIImage(data: Data(contentsOf: url)) else {
-                DispatchQueue.main.async {
-                    completion(UIImage())
-                }
-                return
-            }
+        guard let posterURL = self.movie.posterURL,
+            let url = URL(string: "https://image.tmdb.org/t/p/w500/" + posterURL) else {
             DispatchQueue.main.async {
+                completion(UIImage())
+            }
+            return
+        }
+        imageProvider.load(from: url, key: posterURL+"500") { (result) in
+            switch result {
+            case let .success(image):
                 completion(image)
+            case let .failure(error):
+                print(error)
             }
         }
     }

@@ -42,11 +42,11 @@ class SearchResultViewModelTests: QuickSpec {
         describe(".posterForDisplay") {
             it("returns 3rd item's poster") {
                 var resultImage: UIImage?
-                let expectedImage = UIImage(named: "w200.jpg")!
+                let expectedImage = UIImage(named: "w200.jpg")
                 subject.posterForDisplay(indexPath: IndexPath(row: 2, section: 0), completion: { image in
                     resultImage = image
                 })
-                expect(resultImage?.pngData()!).toEventually(equal(expectedImage.pngData()!))
+                expect(resultImage?.pngData()!).toEventually(equal(expectedImage?.pngData()!))
             }
         }
         
