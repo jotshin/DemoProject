@@ -14,58 +14,9 @@ protocol DataManagerProtocol {
     func fetchSavedMovies(_ completion: @escaping ([Movie]) -> Void)
 }
 
-class DataManager: DataManagerProtocol {
-    func fetchSavedMovies(_ completion: @escaping ([Movie]) -> Void) {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "MovieData")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
-        guard let dic = UserDefaults.standard.object(forKey: userDefaultKeyFavorite) as? [String: Bool] else {
-            completion([])
-            return
-        }
-        // We only need those movies favored and stored in UserDefault dictionary
-        let favoriteIds = Array(dic.filter { $0.value }.keys)
-        fetchRequest.predicate = NSPredicate(format: "id IN %@", favoriteIds)
-        var movies: [Movie] = []
-        mainQueueContext.performAndWait {
-            guard let movieDataArray = try? mainQueueContext.fetch(fetchRequest) as? [MovieData] else {
-                return
-            }
-            for movieData in movieDataArray {
-                let movie = Movie(id: Int(movieData.id), title: movieData.title ?? "", posterURL: movieData.posterURL ?? "")
-                movies.append(movie)
-            }
-            completion(movies)
-        }
-    }
+class DataManager {
     
-    func saveFetchedMovies(_ movies: [Movie]) {
-        privateQueueContext.performAndWait {
-            for movie in movies {
-                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "MovieData")
-                let predicate = NSPredicate(format: "id == \(Int32(movie.id))")
-                fetchRequest.predicate = predicate
-                
-                guard let movieDataArray = try? privateQueueContext.fetch(fetchRequest) as? [MovieData] else {
-                    return
-                }
-                if movieDataArray.count > 0 {
-                    return
-                }
-                
-                guard let movieData = NSEntityDescription.insertNewObject(forEntityName: "MovieData",
-                                                                                     into: privateQueueContext) as? MovieData else {
-                    return
-                }
-                movieData.id = Int32(movie.id)
-                movieData.title = movie.title
-                movieData.posterURL = movie.posterURL ?? ""
-                try? saveChanges()
-            }
-        }
-        
-    }
-    
-    let managedObjectModelName: String
+    private let managedObjectModelName: String
     
     private lazy var managedObjectModel: NSManagedObjectModel? = {
         guard let modelURL = Bundle.main.url(forResource: self.managedObjectModelName, withExtension: "momd"),
@@ -150,6 +101,58 @@ class DataManager: DataManagerProtocol {
         }
         if let error = error {
             throw error
+        }
+    }
+}
+
+// MARK: - DataManagerProtocol
+extension DataManager: DataManagerProtocol {
+    func fetchSavedMovies(_ completion: @escaping ([Movie]) -> Void) {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "MovieData")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+        guard let dic = UserDefaults.standard.object(forKey: userDefaultKeyFavorite) as? [String: Bool] else {
+            completion([])
+            return
+        }
+        // We only need those movies favored and stored in UserDefault dictionary
+        let favoriteIds = Array(dic.filter { $0.value }.keys)
+        fetchRequest.predicate = NSPredicate(format: "id IN %@", favoriteIds)
+        var movies: [Movie] = []
+        mainQueueContext.performAndWait {
+            guard let movieDataArray = try? mainQueueContext.fetch(fetchRequest) as? [MovieData] else {
+                return
+            }
+            for movieData in movieDataArray {
+                let movie = Movie(id: Int(movieData.id), title: movieData.title ?? "", posterURL: movieData.posterURL ?? "")
+                movies.append(movie)
+            }
+            completion(movies)
+        }
+    }
+    
+    func saveFetchedMovies(_ movies: [Movie]) {
+        privateQueueContext.performAndWait {
+            for movie in movies {
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "MovieData")
+                let predicate = NSPredicate(format: "id == \(Int32(movie.id))")
+                fetchRequest.predicate = predicate
+                
+                guard let movieDataArray = try? privateQueueContext.fetch(fetchRequest) as? [MovieData] else {
+                    return
+                }
+                if movieDataArray.count > 0 {
+                    return
+                }
+                
+                guard let movieData = NSEntityDescription.insertNewObject(forEntityName: "MovieData",
+                                                                          into: privateQueueContext) as? MovieData else {
+                                                                            return
+                }
+                movieData.id = Int32(movie.id)
+                movieData.title = movie.title
+                movieData.posterURL = movie.posterURL ?? ""
+                try? saveChanges()
+            }
         }
     }
 }
